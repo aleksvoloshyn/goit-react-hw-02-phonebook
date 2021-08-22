@@ -1,12 +1,13 @@
 import './App.css';
 import React from 'react';
 import { Container } from './Components/Container/Container';
-import { ContactForm } from './Components/ContactForm/ContactForm ';
+import { ContactForm } from './Components/ContactForm/ContactForm';
 import { Filter } from './Components/Filter/Filter';
 import { ContactList } from './Components/ContactList/ContactList';
 import { v4 as uuidv4 } from 'uuid';
 import ReactNotifications from 'react-notifications-component';
 import { store } from 'react-notifications-component';
+import s from './../src/Components/Container/Container.module.css';
 
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css';
@@ -133,16 +134,17 @@ class App extends React.Component {
     return (
       <div className="App">
         <Container>
-          <h1>Phonebook</h1>
+          <h1 className={s.container__label}>Phonebook</h1>
           <ContactForm onSubmit={this.addContact} />
-          <ReactNotifications />
-          <h2>Contacts</h2>
+
+          <h2 className={s.container__contacts}>Contacts</h2>
           <Filter name={this.state.filter} onChange={this.setFilter} />
           <ContactList
             contacts={this.getFilteredResult()}
             deleteContact={this.onDeleteContact}
           />
         </Container>
+        <ReactNotifications />
       </div>
     );
   }

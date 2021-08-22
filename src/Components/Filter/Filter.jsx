@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import s from './Filter.module.css';
 
 function Filter({ name, onChange }) {
   return (
@@ -6,9 +7,10 @@ function Filter({ name, onChange }) {
       <label htmlFor="">
         Find contacts by name
         <input
+          className={s.filter__input}
           type="text"
           name={name}
-          placeholder="Введите имя"
+          placeholder="find by name.."
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
