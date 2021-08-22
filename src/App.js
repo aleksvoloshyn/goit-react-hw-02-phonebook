@@ -41,6 +41,18 @@ class App extends React.Component {
     });
   };
 
+  setFilter = event => {
+    this.setState({ filter: event.currentTarget.value.trim() });
+  };
+
+  getFilteredResult = () => {
+    const { filter, contacts } = this.state;
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()),
+    );
+  };
+
   render() {
     return (
       <div className="App">
@@ -49,9 +61,9 @@ class App extends React.Component {
           <ContactForm onSubmit={this.addContact} />
 
           <h2>Contacts</h2>
-          <Filter />
+          <Filter name={this.state.filter} onChange={this.setFilter} />
           <ContactList
-            contacts={this.state.contacts}
+            contacts={this.getFilteredResult()}
             deleteContact={this.onDeleteContact}
           />
         </div>
